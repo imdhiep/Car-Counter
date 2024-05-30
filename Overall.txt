@@ -1,0 +1,67 @@
+Tổng quan về main.py
+File main.py chủ yếu dùng để nhận diện và đếm các đối tượng trong video bằng cách sử dụng mô hình YOLO (You Only Look Once) và thuật toán theo dõi SORT (Simple Online and Realtime Tracking). Dưới đây là các bước chính trong file:
+
+Khởi tạo các thư viện cần thiết:
+
+Import các thư viện như ultralytics, cv2, numpy, và sort.
+Khởi tạo mô hình YOLO:
+
+Mô hình YOLO được khởi tạo với các trọng số đã được huấn luyện sẵn.
+Đọc và xử lý video:
+
+Video được đọc từ đường dẫn chỉ định.
+Kiểm tra xem video có mở được không và lấy kích thước của khung hình video.
+Áp dụng mặt nạ:
+
+Đọc ảnh mặt nạ từ đường dẫn và thay đổi kích thước của nó theo kích thước của khung hình video.
+Áp dụng mặt nạ lên từng khung hình của video.
+Nhận diện đối tượng:
+
+Sử dụng mô hình YOLO để nhận diện các đối tượng trong khung hình đã áp dụng mặt nạ.
+Theo dõi đối tượng:
+
+Sử dụng thuật toán SORT để theo dõi các đối tượng được nhận diện.
+Gán các đối tượng được nhận diện với các đối tượng đang được theo dõi dựa trên giá trị IOU (Intersection Over Union).
+Đếm đối tượng:
+
+Đếm số lượng đối tượng di chuyển qua một đường xác định trong khung hình.
+Hiển thị kết quả đếm đối tượng trên video.
+Hiển thị kết quả:
+
+Hiển thị khung hình với các bounding boxes và kết quả đếm đối tượng.
+Giải phóng bộ nhớ và đóng các cửa sổ hiển thị.
+Tổng quan về sort.py
+File sort.py chủ yếu dùng để hiện thực thuật toán theo dõi đối tượng SORT. SORT là viết tắt của "Simple Online and Realtime Tracking" và sử dụng bộ lọc Kalman để dự đoán và gán các đối tượng. Dưới đây là các bước chính trong file:
+
+Khởi tạo các thư viện cần thiết:
+
+Import các thư viện như numpy, matplotlib, glob, time, argparse, và KalmanFilter từ filterpy.kalman.
+Thuật toán gán tuyến tính:
+
+Hàm linear_assignment để giải bài toán gán tuyến tính dựa trên ma trận chi phí.
+Tính toán IOU:
+
+Hàm iou_batch để tính toán giá trị IOU giữa hai bounding boxes.
+Chuyển đổi bounding box:
+
+Hàm convert_bbox_to_z để chuyển đổi bounding box từ dạng [x1, y1, x2, y2] sang dạng [x, y, s, r].
+Hàm convert_x_to_bbox để chuyển đổi bounding box từ dạng [x, y, s, r] sang dạng [x1, y1, x2, y2].
+Lớp KalmanBoxTracker:
+
+Lớp này đại diện cho trạng thái của các đối tượng được theo dõi và sử dụng bộ lọc Kalman để dự đoán và cập nhật trạng thái của đối tượng.
+Gán các phát hiện cho các đối tượng theo dõi:
+
+Hàm associate_detections_to_trackers để gán các phát hiện mới cho các đối tượng đang được theo dõi dựa trên giá trị IOU.
+Lớp Sort:
+
+Lớp này thực hiện thuật toán SORT với các tham số chính như max_age, min_hits, và iou_threshold.
+Hàm update để cập nhật các đối tượng theo dõi với các phát hiện mới và trả về trạng thái hiện tại của các đối tượng theo dõi.
+Phân tích các tham số dòng lệnh:
+
+Hàm parse_args để phân tích các tham số đầu vào từ dòng lệnh như display, seq_path, phase, max_age, min_hits, và iou_threshold.
+Hàm main:
+
+Thực hiện các bước chính như đọc dữ liệu đầu vào, khởi tạo bộ theo dõi SORT, cập nhật các đối tượng theo dõi và hiển thị kết quả.
+Sự kết hợp của main.py và sort.py
+main.py sử dụng mô hình YOLO để nhận diện các đối tượng trong video và sau đó sử dụng sort.py để theo dõi các đối tượng này trong thời gian thực.
+Kết quả cuối cùng là một video với các đối tượng được nhận diện và theo dõi, cùng với số lượng đối tượng được đếm di chuyển qua một đường xác định.
