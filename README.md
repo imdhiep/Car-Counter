@@ -3,7 +3,9 @@
 
 This is the source code for the YOLOv8n model car counting application. This is a simple example of an object detection problem in computer vision. I utilized the sort.py file from the fantastic github repository https://github.com/abewley/sort/ to monitor the task in this code.
 
-I also add Vietnamese comment for each line in "Main.py" and "Sort.py" to understading more detail about code.
+I also provide a Vietnamese comment for every line in "Main.py" and "Sort.py" so that you can understand the code in more detail.
+I hope that "Overall.txt" can assist you understand concepts if you're still having trouble understanding.
+
 
 ## Installation
 
