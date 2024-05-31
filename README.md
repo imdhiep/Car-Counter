@@ -10,7 +10,8 @@ I hope that "Overall.txt" can assist you understand concepts if you're still hav
 
 ## Installation
 
-You must install requirements.txt to using it
+Before utilizing it, requirements.txt must be installed.
+
 
 ```bash
 pip install -r requirements.txt
